@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Clearview Landscape Construction LLC</title>
+
   <style>
     :root {
       --bg: #0a0a0a;
@@ -14,13 +15,13 @@
       --muted: rgba(255,255,255,0.7);
       --muted-2: rgba(255,255,255,0.55);
       --green: #34d399;
-      --green-dark: #10b981;
       --radius: 28px;
       --shadow: 0 20px 40px rgba(0,0,0,0.35);
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -29,7 +30,7 @@
     }
 
     a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
+    img, video { display: block; max-width: 100%; }
 
     .container {
       width: min(1200px, calc(100% - 32px));
@@ -69,12 +70,37 @@
 
     .nav {
       display: flex;
-      gap: 28px;
+      gap: 22px;
       font-size: 14px;
       color: rgba(255,255,255,0.8);
+      align-items: center;
     }
 
     .nav a:hover { color: var(--green); }
+
+    .social-icons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .social-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid var(--border);
+      font-size: 18px;
+      font-weight: 900;
+      transition: 0.2s ease;
+    }
+
+    .social-icon:hover {
+      transform: translateY(-2px);
+      border-color: rgba(52,211,153,0.45);
+    }
 
     .btn {
       display: inline-flex;
@@ -82,7 +108,7 @@
       justify-content: center;
       border-radius: 999px;
       padding: 14px 22px;
-      font-weight: 700;
+      font-weight: 800;
       transition: 0.2s ease;
       border: 1px solid transparent;
       cursor: pointer;
@@ -96,36 +122,236 @@
     }
 
     .btn-secondary {
-      background: transparent;
+      background: rgba(255,255,255,0.06);
       color: var(--text);
       border-color: var(--border);
       border-radius: 14px;
-      padding: 14px 22px;
     }
 
-    .hero {
+    section { padding: 44px 0; }
+
+    .client-project {
+      padding-top: 58px;
+      background:
+        radial-gradient(circle at top left, rgba(52,211,153,0.14), transparent 35%),
+        rgba(255,255,255,0.03);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-title {
+      margin: 0 0 28px;
+      font-size: clamp(30px, 4vw, 42px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 22px;
+      margin-bottom: 26px;
+    }
+
+    .section-copy {
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 720px;
+      margin: 0;
+    }
+
+    .client-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      padding: 72px 0;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .client-card,
+    .project-video-card,
+    .work-card,
+    .service-card,
+    .review-card,
+    .about-card,
+    .contact-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.22);
+    }
+
+    .client-media {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+    }
+
+    .client-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .client-label {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(0,0,0,0.72);
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .client-label.green {
+      background: rgba(52,211,153,0.95);
+      color: #06140d;
+      border: 0;
+    }
+
+    .client-body { padding: 18px; }
+
+    .client-title {
+      font-size: 22px;
+      font-weight: 900;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .client-sub {
+      margin-top: 8px;
+      color: var(--muted-2);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .project-video-card {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: stretch;
+    }
+
+    .project-video-card video {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      background: #111;
+    }
+
+    .project-video-info {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .project-video-info h3 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .project-video-info p {
+      margin: 16px 0 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .timeline-points {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .timeline-point {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+    }
+
+    .timeline-icon {
+      color: var(--green);
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .timeline-title {
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .timeline-text {
+      color: var(--muted-2);
+      font-size: 13px;
+      margin-top: 3px;
+      line-height: 1.45;
+    }
+
+    .hero-proof { padding: 50px 0 36px; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 34px;
       align-items: center;
+    }
+
+    .hero-image-card {
+      position: relative;
+      border-radius: 34px;
+      overflow: hidden;
+      border: 1px solid rgba(52,211,153,0.28);
+      background: #111;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-image-card img {
+      width: 100%;
+      height: min(560px, 64vh);
+      object-fit: cover;
+    }
+
+    .image-tag {
+      position: absolute;
+      left: 18px;
+      top: 18px;
+      z-index: 5;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.72);
+      border: 1px solid rgba(255,255,255,0.14);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
 
     .eyebrow {
       color: var(--green);
       margin-bottom: 16px;
       font-size: 15px;
+      font-weight: 800;
     }
 
-    .hero h1 {
-      font-size: clamp(38px, 6vw, 62px);
-      line-height: 0.98;
-      letter-spacing: -0.04em;
+    .hero-content h1 {
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 0.94;
+      letter-spacing: -0.055em;
       margin: 0;
-      font-weight: 900;
+      font-weight: 950;
     }
 
-    .hero p {
+    .hero-content p {
       margin: 18px 0 0;
       max-width: 620px;
       color: var(--muted);
@@ -140,166 +366,33 @@
       margin-top: 26px;
     }
 
-    .panel {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-
-    .why {
-      padding: 32px;
-    }
-
-    .why-kicker {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.3em;
-      color: rgba(52,211,153,0.9);
-    }
-
-    .why h2 {
-      margin: 16px 0 0;
-      font-size: clamp(30px, 4vw, 46px);
-      line-height: 1.02;
-      font-weight: 900;
-      letter-spacing: -0.04em;
-    }
-
-    .why p {
-      margin: 16px 0 0;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 15px;
-      max-width: 560px;
-    }
-
-    .bubble-list {
-      display: grid;
-      gap: 14px;
+    .proof-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
       margin-top: 24px;
     }
 
-    .bubble {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 16px 18px;
-      border-radius: 999px;
+    .proof-pill {
       border: 1px solid var(--border);
-      background: var(--panel-2);
-      transition: 0.2s ease;
-    }
-
-    .bubble:hover {
-      transform: translateY(-1px);
-      border-color: rgba(52,211,153,0.4);
-      background: rgba(255,255,255,0.08);
-    }
-
-    .bubble-icon {
-      width: 42px;
-      height: 42px;
-      flex: 0 0 42px;
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.78);
       border-radius: 999px;
-      display: grid;
-      place-items: center;
-      background: rgba(52,211,153,0.14);
-      color: var(--green);
-      font-size: 18px;
-    }
-
-    .bubble-title {
-      font-size: 16px;
+      padding: 10px 14px;
+      font-size: 13px;
       font-weight: 700;
     }
 
-    .bubble-sub {
-      margin-top: 3px;
-      color: var(--muted-2);
-      font-size: 14px;
-    }
-
-    section {
-      padding: 40px 0;
-    }
-
-    .section-title {
-      margin: 0 0 28px;
-      font-size: clamp(30px, 4vw, 42px);
-      font-weight: 900;
-      letter-spacing: -0.03em;
-    }
-
+    .work-grid,
     .services-grid,
-    .reviews-grid,
-    .work-grid {
+    .reviews-grid {
       display: grid;
       gap: 24px;
     }
 
+    .work-grid { grid-template-columns: repeat(3, 1fr); }
     .services-grid { grid-template-columns: repeat(4, 1fr); }
     .reviews-grid { grid-template-columns: repeat(3, 1fr); }
-    .work-grid { grid-template-columns: repeat(3, 1fr); }
-
-    .service-card,
-    .review-card,
-    .about-card,
-    .contact-card,
-    .work-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      overflow: hidden;
-    }
-
-    .service-card img {
-      width: 100%;
-      height: 170px;
-      object-fit: cover;
-    }
-
-    .service-body,
-    .review-body,
-    .about-card,
-    .contact-card {
-      padding: 18px;
-    }
-
-    .service-title {
-      font-size: 18px;
-      font-weight: 800;
-      margin: 0;
-    }
-
-    .service-desc,
-    .review-text,
-    .about-text,
-    .contact-copy {
-      margin-top: 10px;
-      color: var(--muted-2);
-      line-height: 1.65;
-      font-size: 14px;
-    }
-
-    .about-card { padding: 32px; }
-
-    .about-kicker,
-    .trust-kicker {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.25em;
-      color: var(--green);
-    }
-
-    .about-heading {
-      margin: 14px 0 0;
-      font-size: 38px;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-    }
-
-    .work-card { overflow: hidden; }
 
     .slider-wrap {
       position: relative;
@@ -334,6 +427,22 @@
       z-index: 5;
     }
 
+    .slider-handle {
+      position: absolute;
+      left: calc(var(--pos) - 22px);
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      background: #fff;
+      color: #111;
+      z-index: 6;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+
     .slider-range {
       position: absolute;
       inset: 0;
@@ -351,35 +460,67 @@
       padding: 7px 12px;
       border-radius: 999px;
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 0.08em;
     }
 
-    .badge-before {
-      left: 16px;
-      color: #fff;
-      background: rgba(0,0,0,0.72);
-    }
-
     .badge-after {
-      right: 16px;
+      left: 16px;
       color: #07120d;
       background: rgba(52,211,153,0.95);
     }
 
-    .work-body { padding: 18px; }
+    .badge-before {
+      right: 16px;
+      color: #fff;
+      background: rgba(0,0,0,0.72);
+    }
 
-    .work-title {
+    .work-body,
+    .service-body,
+    .review-body {
+      padding: 18px;
+    }
+
+    .work-title,
+    .service-title {
       font-size: 18px;
-      font-weight: 800;
+      font-weight: 900;
       margin: 0;
     }
 
-    .work-sub {
+    .work-sub,
+    .service-desc,
+    .review-text,
+    .about-text,
+    .contact-copy {
       margin-top: 8px;
       color: var(--muted-2);
       font-size: 14px;
       line-height: 1.6;
+    }
+
+    .service-card img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+    }
+
+    .about-card { padding: 32px; }
+
+    .about-kicker,
+    .trust-kicker {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--green);
+    }
+
+    .about-heading {
+      margin: 14px 0 0;
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
     }
 
     .trust-head {
@@ -423,16 +564,7 @@
       color: rgba(255,255,255,0.78);
     }
 
-    .review-card {
-      border-radius: 30px;
-      box-shadow: 0 14px 28px rgba(0,0,0,0.22);
-      transition: 0.2s ease;
-    }
-
-    .review-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(52,211,153,0.3);
-    }
+    .review-card { border-radius: 30px; }
 
     .review-top {
       display: flex;
@@ -493,10 +625,6 @@
       letter-spacing: -0.03em;
     }
 
-    .contact-copy {
-      max-width: 620px;
-    }
-
     .contact-info-grid {
       margin-top: 24px;
       display: grid;
@@ -519,6 +647,7 @@
     .contact-link:hover {
       border-color: rgba(52,211,153,0.4);
       background: rgba(23,23,23,0.85);
+      transform: translateY(-1px);
     }
 
     .contact-label {
@@ -534,54 +663,13 @@
     .arrow {
       color: var(--green);
       font-size: 20px;
-      transition: 0.2s ease;
     }
-
-    .contact-link:hover .arrow { transform: translateX(3px); }
 
     .contact-card {
       position: relative;
       padding: 24px;
       overflow: hidden;
       box-shadow: var(--shadow);
-    }
-
-    .glow {
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(60px);
-      pointer-events: none;
-    }
-
-    .glow-1 {
-      width: 220px;
-      height: 220px;
-      top: -80px;
-      right: -40px;
-      background: rgba(52,211,153,0.12);
-    }
-
-    .glow-2 {
-      width: 220px;
-      height: 220px;
-      bottom: -90px;
-      left: -50px;
-      background: rgba(255,255,255,0.05);
-    }
-
-    .contact-inner {
-      position: relative;
-      z-index: 2;
-    }
-
-    .submitted {
-      margin-bottom: 16px;
-      border-radius: 14px;
-      border: 1px solid rgba(52,211,153,0.4);
-      background: rgba(52,211,153,0.1);
-      color: rgba(110,231,183,1);
-      padding: 12px 14px;
-      font-size: 14px;
     }
 
     .quick-form {
@@ -620,15 +708,14 @@
       font: inherit;
     }
 
-    .input::placeholder,
-    .textarea::placeholder { color: rgba(255,255,255,0.35); }
-
-    .input:focus,
-    .textarea:focus { border-color: rgba(52,211,153,0.4); }
-
     .textarea {
       min-height: 144px;
       resize: vertical;
+    }
+
+    .input:focus,
+    .textarea:focus {
+      border-color: rgba(52,211,153,0.4);
     }
 
     .full-btn {
@@ -645,34 +732,69 @@
       color: rgba(255,255,255,0.5);
     }
 
+    .submitted {
+      margin-bottom: 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(52,211,153,0.4);
+      background: rgba(52,211,153,0.1);
+      color: rgba(110,231,183,1);
+      padding: 12px 14px;
+      font-size: 14px;
+    }
+
+    .mobile-call {
+      display: none;
+      position: fixed;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      z-index: 200;
+      text-align: center;
+      box-shadow: 0 16px 30px rgba(0,0,0,0.42);
+    }
+
     @media (max-width: 980px) {
-      .hero,
+      .hero-grid,
+      .client-grid,
+      .project-video-card,
       .contact-grid,
+      .work-grid,
       .services-grid,
-      .reviews-grid,
-      .work-grid {
+      .reviews-grid {
         grid-template-columns: 1fr;
       }
 
       .nav { display: none; }
-      .trust-head { flex-direction: column; align-items: start; }
+
+      .trust-head,
+      .section-head {
+        flex-direction: column;
+        align-items: start;
+      }
+
+      .hero-image-card img { height: 500px; }
+      .project-video-card video { height: 500px; }
     }
 
     @media (max-width: 640px) {
       .container { width: min(100% - 24px, 1200px); }
       .header-inner { padding: 14px 0; }
       .brand-title { font-size: 26px; }
-      .hero { padding: 48px 0; }
-      .why,
-      .about-card,
-      .contact-card { padding: 22px; }
-      .bubble { border-radius: 24px; align-items: start; }
+      .social-icons { display: none; }
+      section { padding: 34px 0; }
+      .client-project { padding-top: 38px; }
+      .hero-proof { padding: 34px 0 24px; }
+      .hero-image-card img { height: 420px; }
+      .project-video-card video { height: 460px; }
       .form-grid { grid-template-columns: 1fr; }
+      .hero-actions .btn-primary,
       .btn-secondary { width: 100%; }
-      .hero-actions .btn-primary { width: 100%; }
+      .header .btn-primary { display: none; }
+      .mobile-call { display: block; }
     }
   </style>
 </head>
+
 <body>
   <header class="header">
     <div class="container header-inner">
@@ -680,59 +802,198 @@
         <div class="brand-title">Clearview</div>
         <div class="brand-sub">Landscape Construction LLC</div>
       </div>
+
       <nav class="nav">
-        <a href="#services">Services</a>
-        <a href="#about">About</a>
+        <a href="#client-project">Project</a>
         <a href="#work">Work</a>
+        <a href="#services">Services</a>
         <a href="#contact">Contact</a>
       </nav>
+
+      <div class="social-icons">
+        <a class="social-icon" href="https://www.instagram.com/atclearview/" target="_blank" aria-label="Instagram">📸</a>
+        <a class="social-icon" href="https://www.tiktok.com/@clearviewma?lang=en" target="_blank" aria-label="TikTok">♪</a>
+      </div>
+
       <a class="btn btn-primary" href="tel:9785665237">Call Now</a>
     </div>
   </header>
 
   <main>
-    <section>
-      <div class="container hero">
-        <div>
+    <section id="client-project" class="client-project">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title" style="margin-bottom:10px;">What The Client Wanted vs What She Got</h2>
+            <p class="section-copy">The client showed the look she wanted for her yard. Clearview matched the idea and completed the project with a clean, finished result.</p>
+          </div>
+          <a class="btn btn-primary" href="tel:9785665237">Call For Similar Work</a>
+        </div>
+
+        <div class="client-grid">
+          <article class="client-card">
+            <div class="client-media">
+              <img src="https://i.imgur.com/63NTiBr.jpg" alt="What the client wanted">
+              <div class="client-label">What She Wanted</div>
+            </div>
+            <div class="client-body">
+              <h3 class="client-title">The Inspiration</h3>
+              <div class="client-sub">The client wanted a clean mulch bed look around the tree with a sharp, finished shape.</div>
+            </div>
+          </article>
+
+          <article class="client-card">
+            <div class="client-media">
+              <img src="https://i.imgur.com/2Yzp1GP.jpg" alt="What Clearview completed">
+              <div class="client-label green">What She Got</div>
+            </div>
+            <div class="client-body">
+              <h3 class="client-title">Clearview’s Result</h3>
+              <div class="client-sub">Clearview workers completed the yard project to match the client’s vision with a clean final look.</div>
+            </div>
+          </article>
+        </div>
+
+        <article class="project-video-card">
+          <video controls playsinline muted preload="metadata" poster="https://i.imgur.com/2Yzp1GP.jpg">
+            <source src="https://i.imgur.com/xwY4zNq.mp4" type="video/mp4">
+          </video>
+
+          <div class="project-video-info">
+            <h3>Watch The Work Happen</h3>
+            <p>This video shows the crew working on the project in real time, including the timer and finish time so customers can see the process and trust the result.</p>
+
+            <div class="timeline-points">
+              <div class="timeline-point">
+                <div class="timeline-icon">⏱</div>
+                <div>
+                  <div class="timeline-title">Real project timeframe</div>
+                  <div class="timeline-text">The video shows the timer while the work is being completed.</div>
+                </div>
+              </div>
+
+              <div class="timeline-point">
+                <div class="timeline-icon">🌿</div>
+                <div>
+                  <div class="timeline-title">Clean mulch bed finish</div>
+                  <div class="timeline-text">A clean, shaped result made to match the client’s request.</div>
+                </div>
+              </div>
+
+              <div class="timeline-point">
+                <div class="timeline-icon">✅</div>
+                <div>
+                  <div class="timeline-title">Proof before the quote</div>
+                  <div class="timeline-text">Customers can see the work before calling for their own project.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="tel:9785665237">Call For Quote</a>
+              <a class="btn btn-secondary" href="#contact">Get Free Quote</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="hero-proof">
+      <div class="container hero-grid">
+        <div class="hero-content">
           <div class="eyebrow">Lawrence, MA and nearby areas</div>
-          <h1>Landscaping that makes your property look expensive.</h1>
-          <p>Clean yard upgrades, dependable service, and strong curb appeal for homes and businesses. Built to turn visitors into calls.</p>
+          <h1>Want your yard to look like this?</h1>
+          <p>Call Clearview for clean mulch installs, yard cleanups, lawn care, tree services, and property refreshes around Lawrence, MA.</p>
+
           <div class="hero-actions">
             <a class="btn btn-primary" href="tel:9785665237">Call Now</a>
             <a class="btn btn-secondary" href="#contact">Get Free Quote</a>
           </div>
+
+          <div class="proof-pills">
+            <div class="proof-pill">Real results</div>
+            <div class="proof-pill">Fast communication</div>
+            <div class="proof-pill">Free estimates</div>
+            <div class="proof-pill">Local service</div>
+          </div>
         </div>
 
-        <div class="panel why">
-          <div class="why-kicker">Why Clearview</div>
-          <h2>Clean work. Real results.</h2>
-          <p>Reliable landscaping, fast communication, and clean finish work that makes your property look better fast.</p>
+        <div class="hero-image-card">
+          <div class="image-tag">Real Clearview Result</div>
+          <img src="https://i.imgur.com/2Yzp1GP.jpg" alt="Clearview completed landscaping result">
+        </div>
+      </div>
+    </section>
 
-          <div class="bubble-list">
-            <div class="bubble">
-              <div class="bubble-icon">⚡</div>
-              <div>
-                <div class="bubble-title">Fast communication</div>
-                <div class="bubble-sub">Quick replies and simple scheduling.</div>
-              </div>
-            </div>
-
-            <div class="bubble">
-              <div class="bubble-icon">✨</div>
-              <div>
-                <div class="bubble-title">Clean finish</div>
-                <div class="bubble-sub">Professional-looking results that improve curb appeal.</div>
-              </div>
-            </div>
-
-            <div class="bubble">
-              <div class="bubble-icon">🧭</div>
-              <div>
-                <div class="bubble-title">Simple process</div>
-                <div class="bubble-sub">You call. We show up. We clean it up.</div>
-              </div>
-            </div>
+    <section id="work">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title" style="margin-bottom: 10px;">Slide to Compare Transformations</h2>
+            <p class="section-copy">After is shown on the left. Before is shown on the right so customers can understand the transformation faster.</p>
           </div>
+        </div>
+
+        <div class="work-grid">
+          <article class="work-card">
+            <div class="slider-wrap" data-slider>
+              <div class="badge badge-after">After</div>
+              <div class="badge badge-before">Before</div>
+
+              <img class="slider-base" src="https://i.imgur.com/1WMDotp.jpg" alt="Before yard cleanup">
+              <div class="slider-top-wrap">
+                <img class="slider-top" src="https://i.imgur.com/8u2SGfe.jpg" alt="After yard cleanup">
+              </div>
+
+              <div class="slider-line"></div>
+              <div class="slider-handle">‹›</div>
+              <input class="slider-range" type="range" min="0" max="100" value="50">
+            </div>
+            <div class="work-body">
+              <div class="work-title">Yard Cleanup Transformation</div>
+              <div class="work-sub">After on the left. Before on the right.</div>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="slider-wrap" data-slider>
+              <div class="badge badge-after">After</div>
+              <div class="badge badge-before">Before</div>
+
+              <img class="slider-base" src="https://i.imgur.com/9N8e8uC.jpg" alt="Before curb appeal upgrade">
+              <div class="slider-top-wrap">
+                <img class="slider-top" src="https://i.imgur.com/KbNalx1.jpg" alt="After curb appeal upgrade">
+              </div>
+
+              <div class="slider-line"></div>
+              <div class="slider-handle">‹›</div>
+              <input class="slider-range" type="range" min="0" max="100" value="50">
+            </div>
+            <div class="work-body">
+              <div class="work-title">Curb Appeal Upgrade</div>
+              <div class="work-sub">A fresh look that makes the property stand out.</div>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="slider-wrap" data-slider>
+              <div class="badge badge-after">After</div>
+              <div class="badge badge-before">Before</div>
+
+              <img class="slider-base" src="https://i.imgur.com/YSzCjl2.jpg" alt="Before full property refresh">
+              <div class="slider-top-wrap">
+                <img class="slider-top" src="https://i.imgur.com/Z12wKUK.jpg" alt="After full property refresh">
+              </div>
+
+              <div class="slider-line"></div>
+              <div class="slider-handle">‹›</div>
+              <input class="slider-range" type="range" min="0" max="100" value="50">
+            </div>
+            <div class="work-body">
+              <div class="work-title">Full Property Refresh</div>
+              <div class="work-sub">Complete transformation with a clean finish.</div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -740,9 +1001,10 @@
     <section id="services">
       <div class="container">
         <h2 class="section-title">Services</h2>
+
         <div class="services-grid">
           <article class="service-card">
-            <img src="https://i.imgur.com/iKHk6XK.jpg" alt="Lawn Care" />
+            <img src="https://i.imgur.com/iKHk6XK.jpg" alt="Lawn Care">
             <div class="service-body">
               <h3 class="service-title">Lawn Care</h3>
               <div class="service-desc">Mowing, edging, and cleanup. Weekly or biweekly service to keep your lawn clean and sharp.</div>
@@ -750,7 +1012,7 @@
           </article>
 
           <article class="service-card">
-            <img src="https://i.imgur.com/t5lYJPb.jpg" alt="Mulch Installation" />
+            <img src="https://i.imgur.com/t5lYJPb.jpg" alt="Mulch Installation">
             <div class="service-body">
               <h3 class="service-title">Mulch Installation</h3>
               <div class="service-desc">Fresh mulch for clean beds, better curb appeal, and a finished look.</div>
@@ -758,7 +1020,7 @@
           </article>
 
           <article class="service-card">
-            <img src="https://i.imgur.com/YLGN6Nb.jpg" alt="Tree Services" />
+            <img src="https://i.imgur.com/YLGN6Nb.jpg" alt="Tree Services">
             <div class="service-body">
               <h3 class="service-title">Tree Services</h3>
               <div class="service-desc">Tree trimming, removal, and storm cleanup done safely and professionally.</div>
@@ -766,7 +1028,7 @@
           </article>
 
           <article class="service-card">
-            <img src="https://i.imgur.com/OKpr6HS.jpg" alt="Yard Cleanup" />
+            <img src="https://i.imgur.com/OKpr6HS.jpg" alt="Yard Cleanup">
             <div class="service-body">
               <h3 class="service-title">Yard Cleanup</h3>
               <div class="service-desc">Leaf removal and full yard cleanups. Fast, clean results for any property.</div>
@@ -782,64 +1044,6 @@
           <div class="about-kicker">About</div>
           <div class="about-heading">Simple, reliable landscaping.</div>
           <div class="about-text">Clearview focuses on yard cleanup, lawn care, mulch installation, and tree services that make properties look sharper and more valuable.</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="work">
-      <div class="container">
-        <h2 class="section-title">Slide to Compare Transformations</h2>
-        <div class="work-grid">
-          <article class="work-card">
-            <div class="slider-wrap" data-slider>
-              <div class="badge badge-before">BEFORE</div>
-              <div class="badge badge-after">AFTER</div>
-              <img class="slider-base" src="https://i.imgur.com/1WMDotp.jpg" alt="Yard Cleanup Transformation before" />
-              <div class="slider-top-wrap">
-                <img class="slider-top" src="https://i.imgur.com/8u2SGfe.jpg" alt="Yard Cleanup Transformation after" />
-              </div>
-              <div class="slider-line"></div>
-              <input class="slider-range" type="range" min="0" max="100" value="50" />
-            </div>
-            <div class="work-body">
-              <div class="work-title">Yard Cleanup Transformation</div>
-              <div class="work-sub">See the difference from overgrown to clean finish</div>
-            </div>
-          </article>
-
-          <article class="work-card">
-            <div class="slider-wrap" data-slider>
-              <div class="badge badge-before">BEFORE</div>
-              <div class="badge badge-after">AFTER</div>
-              <img class="slider-base" src="https://i.imgur.com/9N8e8uC.jpg" alt="Curb Appeal Upgrade before" />
-              <div class="slider-top-wrap">
-                <img class="slider-top" src="https://i.imgur.com/KbNalx1.jpg" alt="Curb Appeal Upgrade after" />
-              </div>
-              <div class="slider-line"></div>
-              <input class="slider-range" type="range" min="0" max="100" value="50" />
-            </div>
-            <div class="work-body">
-              <div class="work-title">Curb Appeal Upgrade</div>
-              <div class="work-sub">Before and after that instantly upgrades curb appeal</div>
-            </div>
-          </article>
-
-          <article class="work-card">
-            <div class="slider-wrap" data-slider>
-              <div class="badge badge-before">BEFORE</div>
-              <div class="badge badge-after">AFTER</div>
-              <img class="slider-base" src="https://i.imgur.com/YSzCjl2.jpg" alt="Full Property Refresh before" />
-              <div class="slider-top-wrap">
-                <img class="slider-top" src="https://i.imgur.com/Z12wKUK.jpg" alt="Full Property Refresh after" />
-              </div>
-              <div class="slider-line"></div>
-              <input class="slider-range" type="range" min="0" max="100" value="50" />
-            </div>
-            <div class="work-body">
-              <div class="work-title">Full Property Refresh</div>
-              <div class="work-sub">Slide across to see the property transformation</div>
-            </div>
-          </article>
         </div>
       </div>
     </section>
@@ -860,6 +1064,7 @@
           <div class="point-pill">Real before &amp; after results</div>
           <div class="point-pill">Fast communication</div>
           <div class="point-pill">Local service</div>
+          <div class="point-pill">Instagram &amp; TikTok updates</div>
         </div>
 
         <div class="reviews-grid">
@@ -923,6 +1128,22 @@
               <div class="arrow">→</div>
             </a>
 
+            <a class="contact-link" href="https://www.instagram.com/atclearview/" target="_blank">
+              <div>
+                <div class="contact-label">Instagram</div>
+                <div class="contact-value">@atclearview</div>
+              </div>
+              <div class="arrow">→</div>
+            </a>
+
+            <a class="contact-link" href="https://www.tiktok.com/@clearviewma?lang=en" target="_blank">
+              <div>
+                <div class="contact-label">TikTok</div>
+                <div class="contact-value">@clearviewma</div>
+              </div>
+              <div class="arrow">→</div>
+            </a>
+
             <div class="contact-static">
               <div>
                 <div class="contact-label">Service Area</div>
@@ -933,54 +1154,55 @@
         </div>
 
         <div class="contact-card">
-          <div class="glow glow-1"></div>
-          <div class="glow glow-2"></div>
-          <div class="contact-inner">
-            <div class="quick-form">Quick form</div>
+          <div class="quick-form">Quick form</div>
 
-            <form action="https://formspree.io/f/xdaydlvv" method="POST" id="quoteForm">
-              <input type="hidden" name="_subject" value="New Clearview Quote Request" />
+          <form action="https://formspree.io/f/xdaydlvv" method="POST" id="quoteForm">
+            <input type="hidden" name="_subject" value="New Clearview Quote Request">
 
-              <div id="submittedMsg" class="submitted" style="display:none;">Request sent. We’ll get back to you shortly.</div>
+            <div id="submittedMsg" class="submitted" style="display:none;">Request sent. We’ll get back to you shortly.</div>
 
-              <div class="form-grid">
-                <label class="field two">
-                  <span class="field-label">Name</span>
-                  <input class="input" name="name" placeholder="John Doe" required />
-                </label>
-
-                <label class="field two">
-                  <span class="field-label">Phone</span>
-                  <input class="input" name="phone" placeholder="(978) ..." required />
-                </label>
-              </div>
-
-              <label class="field">
-                <span class="field-label">Email</span>
-                <input class="input" type="email" name="email" placeholder="you@email.com" required />
+            <div class="form-grid">
+              <label class="field two">
+                <span class="field-label">Name</span>
+                <input class="input" name="name" placeholder="John Doe" required>
               </label>
 
-              <label class="field">
-                <span class="field-label">Project details</span>
-                <textarea class="textarea" name="message" placeholder="Describe the job (lawn care, cleanup, mulch, trees, etc.)" required></textarea>
+              <label class="field two">
+                <span class="field-label">Phone</span>
+                <input class="input" name="phone" placeholder="(978) ..." required>
               </label>
+            </div>
 
-              <button type="submit" id="quoteBtn" class="btn btn-primary full-btn">Get My Free Quote</button>
-              <div class="fine-print">Fast reply • No pressure • Clear pricing</div>
-            </form>
-          </div>
+            <label class="field">
+              <span class="field-label">Email</span>
+              <input class="input" type="email" name="email" placeholder="you@email.com" required>
+            </label>
+
+            <label class="field">
+              <span class="field-label">Project details</span>
+              <textarea class="textarea" name="message" placeholder="Describe the job: lawn care, cleanup, mulch, trees, etc." required></textarea>
+            </label>
+
+            <button type="submit" id="quoteBtn" class="btn btn-primary full-btn">Get My Free Quote</button>
+            <div class="fine-print">Fast reply • No pressure • Clear pricing</div>
+          </form>
         </div>
       </div>
     </section>
   </main>
 
+  <a class="btn btn-primary mobile-call" href="tel:9785665237">Call Now For A Free Quote</a>
+
   <script>
     document.querySelectorAll('[data-slider]').forEach((slider) => {
       const range = slider.querySelector('.slider-range');
-      range.addEventListener('input', (e) => {
-        slider.style.setProperty('--pos', e.target.value + '%');
-      });
-      slider.style.setProperty('--pos', range.value + '%');
+
+      const updateSlider = () => {
+        slider.style.setProperty('--pos', range.value + '%');
+      };
+
+      range.addEventListener('input', updateSlider);
+      updateSlider();
     });
 
     const quoteForm = document.getElementById('quoteForm');
@@ -1000,9 +1222,7 @@
           const response = await fetch('https://formspree.io/f/xdaydlvv', {
             method: 'POST',
             body: formData,
-            headers: {
-              Accept: 'application/json'
-            }
+            headers: { Accept: 'application/json' }
           });
 
           if (response.ok) {
