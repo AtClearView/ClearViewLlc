@@ -792,7 +792,13 @@
       .header .btn-primary { display: none; }
       .mobile-call { display: block; }
     }
-  </style>
+  
+.gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.gallery-card{background:var(--panel);border:1px solid var(--border);border-radius:24px;overflow:hidden;box-shadow:0 14px 28px rgba(0,0,0,.22)}
+.gallery-card img{width:100%;height:420px;object-fit:cover}
+@media(max-width:768px){.gallery-grid{grid-template-columns:1fr}.gallery-card img{height:320px}}
+
+</style>
 </head>
 
 <body>
@@ -804,7 +810,7 @@
       </div>
 
       <nav class="nav">
-        <a href="#client-project">Project</a>
+        <a href="#gallery">Gallery</a>
         <a href="#work">Work</a>
         <a href="#services">Services</a>
         <a href="#contact">Contact</a>
@@ -820,83 +826,24 @@
   </header>
 
   <main>
-    <section id="client-project" class="client-project">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title" style="margin-bottom:10px;">What The Client Wanted vs What She Got</h2>
-            <p class="section-copy">The client showed the look she wanted for her yard. Clearview matched the idea and completed the project with a clean, finished result.</p>
-          </div>
-          <a class="btn btn-primary" href="tel:9785665237">Call For Similar Work</a>
-        </div>
+    
+<section id="gallery" class="client-project">
+<div class="container">
+<div class="section-head">
+<div>
+<h2 class="section-title" style="margin-bottom:10px;">Our Recent Work</h2>
+<p class="section-copy">Browse real Clearview projects completed throughout Lawrence, MA and surrounding areas.</p>
+</div>
+<a class="btn btn-primary" href="tel:9785665237">Get A Free Quote</a>
+</div>
 
-        <div class="client-grid">
-          <article class="client-card">
-            <div class="client-media">
-              <img src="https://i.imgur.com/63NTiBr.jpg" alt="What the client wanted">
-              <div class="client-label">What She Wanted</div>
-            </div>
-            <div class="client-body">
-              <h3 class="client-title">The Inspiration</h3>
-              <div class="client-sub">The client wanted a clean mulch bed look around the tree with a sharp, finished shape.</div>
-            </div>
-          </article>
+<div class="gallery-grid">
+<div class="gallery-card"><img src="ClearView 1.jpg" alt="ClearView Project 1"></div>
+<div class="gallery-card"><img src="ClearView 2.jpg" alt="ClearView Project 2"></div>
+</div>
+</div>
+</section>
 
-          <article class="client-card">
-            <div class="client-media">
-              <img src="https://i.imgur.com/2Yzp1GP.jpg" alt="What Clearview completed">
-              <div class="client-label green">What She Got</div>
-            </div>
-            <div class="client-body">
-              <h3 class="client-title">Clearview’s Result</h3>
-              <div class="client-sub">Clearview workers completed the yard project to match the client’s vision with a clean final look.</div>
-            </div>
-          </article>
-        </div>
-
-        <article class="project-video-card">
-          <video controls playsinline muted preload="metadata" poster="https://i.imgur.com/2Yzp1GP.jpg">
-            <source src="https://i.imgur.com/xwY4zNq.mp4" type="video/mp4">
-          </video>
-
-          <div class="project-video-info">
-            <h3>Watch The Work Happen</h3>
-            <p>This video shows the crew working on the project in real time, including the timer and finish time so customers can see the process and trust the result.</p>
-
-            <div class="timeline-points">
-              <div class="timeline-point">
-                <div class="timeline-icon">⏱</div>
-                <div>
-                  <div class="timeline-title">Real project timeframe</div>
-                  <div class="timeline-text">The video shows the timer while the work is being completed.</div>
-                </div>
-              </div>
-
-              <div class="timeline-point">
-                <div class="timeline-icon">🌿</div>
-                <div>
-                  <div class="timeline-title">Clean mulch bed finish</div>
-                  <div class="timeline-text">A clean, shaped result made to match the client’s request.</div>
-                </div>
-              </div>
-
-              <div class="timeline-point">
-                <div class="timeline-icon">✅</div>
-                <div>
-                  <div class="timeline-title">Proof before the quote</div>
-                  <div class="timeline-text">Customers can see the work before calling for their own project.</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="tel:9785665237">Call For Quote</a>
-              <a class="btn btn-secondary" href="#contact">Get Free Quote</a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
 
     <section class="hero-proof">
       <div class="container hero-grid">
